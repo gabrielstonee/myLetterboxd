@@ -1,51 +1,51 @@
-const { getTodosLivros, getLivroPorId, insereLivro, modificaLivro } = require("../serviços/livro.js")
+const { getTodosMovies, getMoviePorId, insereMovie, modificaMovie } = require("../serviços/movie.js")
 
-function getLivros(req, res) {
+function getMovies(req, res) {
     try {
-        const livros = getTodosLivros()
-        res.send(livros)
+        const movies = getTodosMovies()
+        res.send(movies)
     } catch (error) {
         res.status(500)
         res.send(error.message)
     } 
 }
-function getLivro(req, res) {
+function getMovie(req, res) {
   try {
       const id = req.params.id
-      const livro = getLivroPorId(id)
-      res.send(livro)
+      const movie = getMoviePorId(id)
+      res.send(movie)
       } catch (error) {
       res.status(500)
       res.send(error.message)
   }
 }
 
-function postLivro(req, res) {
+function postMovie(req, res) {
   try {
-      const livroNovo = req.body
-      insereLivro(livroNovo)
+      const movieNovo = req.body
+      insereMovie(movieNovo)
   } catch(error) {
       res.status(500)
       res.send(error.message)
   }
 }
-function patchLivro(req, res) {
+function patchMovie(req, res) {
   try {
       const id = req.params.id
       const body = req.body
       
-      modificaLivro(body, id)
+      modificaMovie(body, id)
       res.send("Item modificado com sucesso")
   } catch (error) {
       res.status(500)
       res.send(error.message)
   }
 }
-function deleteLivro(req, res) {
+function deleteMovie(req, res) {
   try {
       const id = req.params.id
-      deletaLivroPorId(id)
-      res.send("livro deletado com sucesso")
+      deletaMoviePorId(id)
+      res.send("movie deletado com sucesso")
   } catch (error) {
       res.status(500)
       res.send(error.message)
@@ -53,9 +53,9 @@ function deleteLivro(req, res) {
 }
 
 module.exports = {
-  getLivros,
-  getLivro,
-  postLivro,
-  patchLivro,
-  deleteLivro
+  getMovies,
+  getMovie,
+  postMovie,
+  patchMovie,
+  deleteMovie
 }
