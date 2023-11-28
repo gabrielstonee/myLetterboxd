@@ -1,6 +1,6 @@
 const express = require("express")
-const rotaLivro = require("./rotas/livro.js")
-const rotaFavorito = require("./rotas/favoritos.js")
+const routeMovie = require("./routes/movie.js")
+const routeFavorite = require("./routes/favorites.js")
 const cors = require("cors")
 const app = express()
 
@@ -9,12 +9,12 @@ app.use(cors({origin: "*"}))
 
 const port = 8000
 
-app.use('/livros', rotaLivro);
-app.use('/favoritos', rotaFavorito);
+app.use('/movie', routeMovie);
+app.use('/favorites', routeFavorite);
 app.get('/', (req, res) => {
   res.send("Olá mundo")
 })
 
 app.listen(port, () => {
-  console.log(`Escutando a porta ${port}`);
+  console.log(`Listening in port ${port}`);
 })

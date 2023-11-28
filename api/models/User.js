@@ -1,7 +1,8 @@
 class User{
-  constructor(name, username, password) {
+  constructor(name, username, profile_pic, password) {
     this.name = name;
     this.username = username;
+    this.profile_pic = profile_pic;
     this.password = password;
     this.favorites = [];
     this.watcheds = [];

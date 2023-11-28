@@ -1,6 +1,7 @@
 class Movie{
-  constructor(title, year, director, synopsis, cast) {
+  constructor(title, image, year, director, synopsis, cast) {
     this.title = title;
+    this.image = image;
     this.year = year;
     this.director = director;
     this.synopsis = synopsis;

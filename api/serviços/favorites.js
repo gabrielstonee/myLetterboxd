@@ -1,8 +1,5 @@
 const fs = require("fs")
 
-class Favorites{
-
-}
 function getTodosFavorites() {
     return JSON.parse( fs.readFileSync("favorites.json") )
 }
