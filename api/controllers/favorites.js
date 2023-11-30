@@ -1,8 +1,8 @@
-const { getTodosFavorites, insereFavorite, deletaFavoritePorId } = require("../serviços/favorites.js")
+import MovieService from "../serviços/favorites.js"
 
-function getFavorites(req, res) {
+async function getFavorites(req, res) {
     try {
-        const livros = getTodosFavorites()
+        const livros = await MovieService.getTodosFavorites()
         res.send(livros)
     } catch (error) {
         res.status(500)
@@ -10,20 +10,20 @@ function getFavorites(req, res) {
     } 
 }
 
-function postFavorite(req, res) {
+async function postFavorite(req, res) {
   try {
       const livroNovo = req.body
-      insereFavorite()
+      MovieService.insereFavorite()
   } catch(error) {
       res.status(500)
       res.send(error.message)
   }
 }
 
-function deleteFavorite(req, res) {
+async function deleteFavorite(req, res) {
   try {
       const id = req.params.id
-      deletaFavoritePorId(id)
+      MovieService.deletaFavoritePorId(id)
       res.send("favorite deletado com sucesso")
   } catch (error) {
       res.status(500)
@@ -31,8 +31,8 @@ function deleteFavorite(req, res) {
   }
 }
 
-module.exports = {
+export default {
   getFavorites,
   postFavorite,
-  deleteFavorite,
+  deleteFavorite
 }

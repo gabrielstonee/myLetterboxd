@@ -1,4 +1,4 @@
-import { connect } from "./mongo.db.js";
+import { connect } from "./mongodb.js";
 import MovieSchema from "../schemas/movie.schema.js";
 
 async function createMovieInfo(movieInfo){
@@ -22,21 +22,21 @@ async function updateMovieInfo(movieInfo){
   }
 }
 
-async function getProductInfo(productId){
+async function getMovieInfo(movieInfoId){
   try{
     const mongoose = await connect();
-    const ProductInfo = mongoose.model("ProductInfo", ProductInfoSchema);
-    return await ProductInfo.findOne({ productId }).exec();
+    const MovieInfo = mongoose.model("MovieInfo", MovieSchema);
+    return await MovieInfo.findOne({ movieInfoId }).exec();
   }catch(err){
     throw err;
   }
 }
 
-async function deleteProductInfo(productId){
+async function deleteMovieInfo(movieId){
   try{
     const mongoose = await connect();
-    const ProductInfo = mongoose.model("ProductInfo", ProductInfoSchema);
-    await ProductInfo.deleteOne({ productId });
+    const MovieInfo = mongoose.model("MovieInfo", MovieSchema);
+    await MovieInfo.deleteOne({ movieId });
   }catch(err){
     throw err;
   }
@@ -45,8 +45,8 @@ async function deleteProductInfo(productId){
 async function findAll(){
   try{
     const mongoose = await connect();
-    const ProductInfo = mongoose.model("ProductInfo", ProductInfoSchema);
-    return await ProductInfo.find({}).exec();
+    const MovieInfo = mongoose.model("MovieInfo", MovieSchema);
+    return await MovieInfo.find({}).exec();
   }catch(err){
     throw err;
   }
@@ -55,9 +55,7 @@ async function findAll(){
 export default {
   createMovieInfo,
   updateMovieInfo,
-  getProductInfo,
-  createReview,
-  deleteReview,
+  getMovieInfo,
   findAll,
-  deleteProductInfo
+  deleteMovieInfo
 };

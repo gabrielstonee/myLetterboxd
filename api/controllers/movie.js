@@ -1,18 +1,18 @@
-const { getTodosMovies, getMoviePorId, insereMovie, modificaMovie } = require("../serviços/movie.js")
+import MovieService from "../serviços/movie.js"
 
-function getMovies(req, res) {
+async function getMovies(req, res) {
     try {
-        const movies = getTodosMovies()
+        const movies = await MovieService.getTodosMovies()
         res.send(movies)
     } catch (error) {
         res.status(500)
         res.send(error.message)
     } 
 }
-function getMovie(req, res) {
+async function getMovie(req, res) {
   try {
       const id = req.params.id
-      const movie = getMoviePorId(id)
+      const movie = await MovieService.getMoviePorId(id)
       res.send(movie)
       } catch (error) {
       res.status(500)
@@ -20,31 +20,31 @@ function getMovie(req, res) {
   }
 }
 
-function postMovie(req, res) {
+async function postMovie(req, res) {
   try {
       const movieNovo = req.body
-      insereMovie(movieNovo)
+      res.send(await MovieService.insereMovie(movieNovo))
   } catch(error) {
       res.status(500)
       res.send(error.message)
   }
 }
-function patchMovie(req, res) {
+async function patchMovie(req, res) {
   try {
       const id = req.params.id
       const body = req.body
       
-      modificaMovie(body, id)
+      res.send(await MovieService.modificaMovie(body, id))
       res.send("Item modificado com sucesso")
   } catch (error) {
       res.status(500)
       res.send(error.message)
   }
 }
-function deleteMovie(req, res) {
+async function deleteMovie(req, res) {
   try {
       const id = req.params.id
-      deletaMoviePorId(id)
+      res.send(await MovieService.deletaMoviePorId(id))
       res.send("movie deletado com sucesso")
   } catch (error) {
       res.status(500)
@@ -52,7 +52,7 @@ function deleteMovie(req, res) {
   }
 }
 
-module.exports = {
+export default {
   getMovies,
   getMovie,
   postMovie,

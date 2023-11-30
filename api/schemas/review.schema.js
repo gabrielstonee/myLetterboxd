@@ -3,7 +3,7 @@ import MovieSchema from "./movie.schema.js";
 
 const ReviewSchema = new mongoose.Schema(
   {
-    user: MovieSchema,
+    user: String,
     score: Number,
     content: String,
   }, {collection: "review"}

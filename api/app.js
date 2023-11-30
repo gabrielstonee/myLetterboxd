@@ -1,7 +1,8 @@
-const express = require("express")
-const routeMovie = require("./routes/movie.js")
-const routeFavorite = require("./routes/favorites.js")
-const cors = require("cors")
+import express from "express"
+import routeMovie from "./routes/movie.js"
+import routeFavorite from "./routes/favorites.js"
+import cors from "cors"
+
 const app = express()
 
 app.use(express.json())

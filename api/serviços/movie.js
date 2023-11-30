@@ -1,40 +1,28 @@
-const fs = require("fs")
+import MovieRepository from "../repositories/movieInfo.repository.js"
 
-function getTodosMovies() {
-    return JSON.parse( fs.readFileSync("movies.json") )
+async function getTodosMovies() {
+    return await MovieRepository.findAll()
 }
-function getMoviePorId(id) {
-  const movies = JSON.parse(fs.readFileSync("movies.json"))
+
+async function getMoviePorId(id) {
+  const movies = await MovieRepository.findAll()
 
   const movieFiltrado = movies.filter( movie => movie.id === id )[0]
   return movieFiltrado
 }
 
-function insereMovie(movieNovo) {
-  const movies = JSON.parse(fs.readFileSync("movies.json"))
-
-  const novaListaDeMovies = [ ...movies, MovieNovo ]
-
-  fs.writeFileSync("movies.json", JSON.stringify(novaListaDeMovies))
+async function insereMovie(movieNovo) {
+  await MovieRepository.createMovieInfo(movieNovo);
 }
 
-function modificaMovie(modificacoes,  id) {
-  let moviesAtuais = JSON.parse(fs.readFileSync("movies.json"))
-  const indiceModificado = moviesAtuais.findindex(movie => movie.id === id)
-  
-  const conteudoMudado = { ...moviesAtuais[indiceModificado], ...modificacoes }
-
-  moviesAtuais[indiceModificado] = conteudoMudado
-  fs.writeFileSync("movies.json", JSON.stringify(moviesAtuais))
+async function modificaMovie(movieInfo) {
+  await MovieInfoRepository.updateMovieInfo(movieInfo);
 }
-function deletarMoviePorId(id) {
-  const movies = JSON.parse(fs.readFileSync("movies.json"))
-
-  const moviesFiltrados = movies.filter( movie => movie.id!== id )
-  fs.writeFileSync("movies.json", JSON.stringfy(moviesFiltrados))
+async function deletarMoviePorId(id) {
+  await MovieInfoRepository.deleteMovieInfo(movieId);
 }
 
-module.exports = {
+export default {
     getTodosMovies,
     getMoviePorId,
     insereMovie,

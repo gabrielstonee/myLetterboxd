@@ -8,7 +8,7 @@ const MovieSchema = new mongoose.Schema(
     year: String,
     director: String,
     synopsis: String,
-    cast: [],
+    cast: [String],
     reviews: [ReviewSchema]
   }, { collection: "movieInfo" }
 );

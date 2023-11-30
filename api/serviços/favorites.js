@@ -1,4 +1,4 @@
-const fs = require("fs")
+import fs from "fs"
 
 function getTodosFavorites() {
     return JSON.parse( fs.readFileSync("favorites.json") )
@@ -21,7 +21,7 @@ function deletaFavoritePorId(id){
   fs.writeFileSync("favorites.json", JSON.stringify(livrosFiltrados))
 }
 
-module.exports = {
+export default {
   getTodosFavorites,
   insereFavorite,
   deletaFavoritePorId
